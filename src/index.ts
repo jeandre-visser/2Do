@@ -10,7 +10,7 @@ type Task = {
 
 const list = document.querySelector<HTMLUListElement>("#list");
 const form = document.querySelector<HTMLFormElement>("#task-form");
-const input = document.querySelector<HTMLInputElement>("#task-input");
+const input = document.querySelector<HTMLInputElement>("#task-title");
 
 form?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -26,8 +26,16 @@ form?.addEventListener("submit", (e) => {
   }
 
   addListItem(newTask);
+  input.value = ""
 })
 
 const addListItem = (task: Task) => {
-  
+  const item = document.createElement("li");
+  const label = document.createElement("label");
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = task.completed;
+  label.append(checkbox, task.title);
+  item.append(label)
+  list?.append(item)
 }
