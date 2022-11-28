@@ -51,3 +51,9 @@ const addListItem = (task: Task) => {
 const saveTasks = () => {
   localStorage.setItem("TASKS", JSON.stringify(tasks))
 }
+
+const loadTasks = (): Task[] => {
+  const taskJson = localStorage.getItem("TASKS");
+  if (taskJson == null) return [];
+  return JSON.parse(taskJson)
+}
